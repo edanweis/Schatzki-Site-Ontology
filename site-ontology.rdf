@@ -1,0 +1,445 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://purl.org/site-ontology#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://purl.org/site-ontology">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.w3.org/2003/06/sw-vocab-status/ns"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Task">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Project"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Task</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="IntentionalRelation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Intentional relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SocialRelation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LinkedUnderstanding">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Entity"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Understanding</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Activity">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Entity"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasParticipant"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Activity</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="CausalRelation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Causal relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SocialRelation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Rules">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Rules</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LinkedUnderstanding"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Entity">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#SocialRelation"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Activity"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isParticipantIn"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Entity</rdfs:label>
+    <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >testing</vs:term_status>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Entities are the components which make up social life.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="GeneralUnderstanding">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >General understanding</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LinkedUnderstanding"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Artifact">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Artifact</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Human">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Human</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Practice">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isCarriedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Activity"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isEnactedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Practice</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#LinkedUnderstanding"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isOrganizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isOrganizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isEnactedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Entity"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isCarriedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SocialRelation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Social relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PracticalAbility">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Practical ability</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LinkedUnderstanding"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Action">
+    <rdfs:subClassOf rdf:resource="#Task"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Action</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Organism">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organism</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TeleoaffectiveStructure">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Teleoaffective structure</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#LinkedUnderstanding"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SpatialRelation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Spatial relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SocialRelation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Thing">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Thing</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Order">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Orders</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isArrangedBy"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isArrangedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#SocialRelation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PrefigurativeRelation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Prefigurative relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SocialRelation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Project">
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Project</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#isCarriedBy">
+    <rdfs:domain rdf:resource="#Practice"/>
+    <rdfs:range rdf:resource="#Entity"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="isComposedOf"/>
+    </rdfs:subPropertyOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >performs practice</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isCarrierOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRelation">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#isArrangedBy"/>
+    </rdfs:subPropertyOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is related through</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="#SocialRelation"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isRelationTowards"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isParticipantIn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is participant in</rdfs:label>
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:range rdf:resource="#Activity"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#hasParticipant"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isComposedOf">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Activity"/>
+          <owl:Class rdf:about="#Entity"/>
+          <owl:Class rdf:about="#LinkedUnderstanding"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Practice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >composes practice</rdfs:label>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="composesPractice"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isEnactedBy">
+    <rdfs:domain rdf:resource="#Practice"/>
+    <rdfs:range rdf:resource="#Activity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is enacted by</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="#isComposedOf"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isEnactmentOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#composesPractice">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Activity"/>
+          <owl:Class rdf:about="#Entity"/>
+          <owl:Class rdf:about="#LinkedUnderstanding"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >composes practice</rdfs:label>
+    <owl:inverseOf rdf:resource="#isComposedOf"/>
+    <rdfs:range rdf:resource="#Practice"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasParticipant">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has participant</rdfs:label>
+    <owl:inverseOf rdf:resource="#isParticipantIn"/>
+    <rdfs:domain rdf:resource="#Activity"/>
+    <rdfs:range rdf:resource="#Entity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isEnactmentOf">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is enactedin</rdfs:label>
+    <rdfs:domain rdf:resource="#Activity"/>
+    <rdfs:subPropertyOf rdf:resource="#composesPractice"/>
+    <rdfs:range rdf:resource="#Practice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <owl:inverseOf rdf:resource="#isEnactedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isRelationTowards">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Socially relates</rdfs:label>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="arrangesEntities"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#SocialRelation"/>
+    <rdfs:range rdf:resource="#Entity"/>
+    <owl:inverseOf rdf:resource="#hasRelation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isCarrierOf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="#Practice"/>
+    <rdfs:domain rdf:resource="#Entity"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is social relation for</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="#composesPractice"/>
+    <owl:inverseOf rdf:resource="#isCarriedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isOrganizedBy">
+    <rdfs:range rdf:resource="#LinkedUnderstanding"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >social relation</rdfs:label>
+    <rdfs:domain rdf:resource="#Practice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relations among entities are social relations to the extent that they help constitute social life. They form links among particular entities, (not types or hypostatized abstractions) which cover the full range of connections among entities of arrangements, not just links that join humans directly.</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#isComposedOf"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isOrganizerOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#arrangesEntities">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >arranges entities</rdfs:label>
+    <rdfs:range rdf:resource="#Entity"/>
+    <rdfs:domain rdf:resource="#SocialRelation"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#isArrangedBy"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isArrangedBy">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >has social relation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="#SocialRelation"/>
+    <rdfs:domain rdf:resource="#Entity"/>
+    <owl:inverseOf rdf:resource="#arrangesEntities"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isOrganizerOf">
+    <rdfs:subPropertyOf rdf:resource="#composesPractice"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is organizer of</rdfs:label>
+    <rdfs:domain rdf:resource="#LinkedUnderstanding"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:range rdf:resource="#Practice"/>
+    <owl:inverseOf rdf:resource="#isOrganizedBy"/>
+  </owl:ObjectProperty>
+  <Artifact rdf:ID="surfboard">
+    <hasRelation>
+      <CausalRelation rdf:ID="float"/>
+    </hasRelation>
+  </Artifact>
+  <Practice rdf:ID="surfing">
+    <isOrganizedBy>
+      <PracticalAbility rdf:ID="analysingWaves"/>
+    </isOrganizedBy>
+    <isEnactedBy>
+      <Action rdf:ID="OceanWatching"/>
+    </isEnactedBy>
+    <isCarriedBy>
+      <Human rdf:ID="EdanWeis"/>
+    </isCarriedBy>
+  </Practice>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->
