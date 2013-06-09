@@ -10,8 +10,7 @@ The idea is to advance a shared conceptualisation of Schatzki's site ontology wh
 
 Some examples of how this ontology can be used include, the creation of graph visualizations representing the large scale practice-order meshes; structuring high volumes of data from social media channels into practice-order meshes; facilitating data collection for researchers adopting schatzki's theory of practice and demarcating the field of arrangements; analysing the data contained in such large-scale practice-order meshes by querying for specific patterns against a database of empirical observations.
 
-This ontology has been created as part of ongoing PhD research project by Edan Weis at the University of Melbourne. 
-All resource descriptions (rdfs:comment) contained in this ontology have been adapted from Theodore R. Schatzki, the original author of, The site of the social. A philosophical account of the constitution of social life and change. 2002 University Park: Pennsylvania State University Press.
+Please note, I am not the original author of the philosophical concepts and descriptions contained in this document. This ontology has been created as part of ongoing PhD research project by Edan Weis at the University of Melbourne. All resource descriptions (rdfs:comment) contained in this ontology have been adapted from Theodore R. Schatzki, the original author of, The site of the social. A philosophical account of the constitution of social life and change. 2002 University Park: Pennsylvania State University Press.
 
 -----------------------
 
