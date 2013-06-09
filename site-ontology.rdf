@@ -13,6 +13,10 @@
     <owl:imports rdf:resource="http://purl.org/dc/elements/1.1/"/>
     <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Schatzki Site Ontology</dc:title>
+    <vs:moreinfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >- The Arrangement Class serves no purpose. &#xD;
+- There is no Order Class&#xD;
+- There is explicit linking of practices to arrangements through their social relations and linked understandings. If understanding or social relations are eliminated, the practice should cease to exist, or lay dormant?</vs:moreinfo>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >0.01</owl:versionInfo>
     <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -53,6 +57,8 @@ All resource descriptions (rdf:comment) contained in this ontology have been ada
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="LinkedUnderstanding">
+    <vs:moreinfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Should this contain an equivalent class: (hasParticipant some LinkedUnderstanding) ?</vs:moreinfo>
     <rdfs:comment xml:lang="en">Two or more actions are “linked” by practical understanding when they express the same understanding.</rdfs:comment>
     <owl:disjointWith>
       <owl:Class rdf:ID="Entity"/>
@@ -114,7 +120,8 @@ Rules of the present sort are not explicitizations of previously unarticulated u
     <rdfs:subClassOf rdf:resource="#LinkedUnderstanding"/>
   </owl:Class>
   <owl:Class rdf:about="#Entity">
-    <rdfs:comment xml:lang="en">Entities are the components which make up social life. This typology is not meant to be an unassailable, immutable, or mutually exclusive classification of either the entities that are or those that enter social life. It claims only to be a useful, experientially based sorting of the entities significant to humans through which their lives hang together. Nor does it pretend to be either the only sensible or the “natural” taxonomy of significant coexistence-mediating beings. It is simply an effective and adequately comprehensive parsing of the entities amid and through which people inter-relatedly live. The purpose to which site ontology is directed is understanding social life; to this end, it is reasonable to construct a straightforward experiential typology that classifies entities on the bases of their standings vis-à-vis human activity and of their significance for human coexistence.</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Entity</rdfs:label>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="#Activity"/>
@@ -123,7 +130,7 @@ Rules of the present sort are not explicitizations of previously unarticulated u
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:label xml:lang="en">Entity</rdfs:label>
+    <rdfs:comment xml:lang="en">Entities are the components which make up social life. This typology is not meant to be an unassailable, immutable, or mutually exclusive classification of either the entities that are or those that enter social life. It claims only to be a useful, experientially based sorting of the entities significant to humans through which their lives hang together. Nor does it pretend to be either the only sensible or the “natural” taxonomy of significant coexistence-mediating beings. It is simply an effective and adequately comprehensive parsing of the entities amid and through which people inter-relatedly live. The purpose to which site ontology is directed is understanding social life; to this end, it is reasonable to construct a straightforward experiential typology that classifies entities on the bases of their standings vis-à-vis human activity and of their significance for human coexistence.</rdfs:comment>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >testing</vs:term_status>
     <owl:disjointWith>
@@ -218,10 +225,9 @@ Examples are negotiation practices, political practices, cooking practices, bank
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#SocialRelation">
+    <rdfs:comment xml:lang="en">Relations are links among particular entities that form a complex, polychromatic dimension of social order. They cover the full range of connections among components of arrangements through which human lives hang together, not just links that join humans directly.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Social relation</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="Arrangement">
     <rdfs:subClassOf>
@@ -309,20 +315,20 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     >Project</rdfs:label>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#isCarriedBy">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="isExpressedThrough"/>
-    </rdfs:subPropertyOf>
+    <rdfs:comment xml:lang="en">Relates a practice to a human that is carrying it. A person can be said to carry a practice if one or more understandings are expresssed and/or organized through his/her doings and sayings.</rdfs:comment>
     <rdfs:domain rdf:resource="#Practice"/>
     <rdfs:range rdf:resource="#Human"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >performs practice</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="isExpressedThrough"/>
+    </rdfs:subPropertyOf>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="isCarrierOf"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="expressesPractice">
+    <rdfs:comment xml:lang="en">Relates a particular set of humans, activities and linked understandings to a practice that they express.</rdfs:comment>
     <rdfs:range rdf:resource="#Practice"/>
     <rdfs:domain>
       <owl:Class>
@@ -335,20 +341,17 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </rdfs:domain>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >composes practice</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="#isExpressedThrough"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasRelation">
+    <rdfs:comment xml:lang="en">relates an entity to a given type of social relation; causal, intentional, prefigurative or spatial.</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >is related through</rdfs:label>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#isArrangedBy"/>
     </rdfs:subPropertyOf>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >is related through</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
     <rdfs:domain rdf:resource="#Entity"/>
     <rdfs:range rdf:resource="#SocialRelation"/>
     <owl:inverseOf>
@@ -356,6 +359,10 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isParticipantIn">
+    <vs:moreinfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is this necessary?</vs:moreinfo>
+    <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >testing</vs:term_status>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -367,12 +374,11 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isEnactedBy">
+    <rdfs:comment xml:lang="en">Relates a practice to an activity, if the doings and sayings of that activity expresses components (linked understandings) belonging to that practice.</rdfs:comment>
+    <rdfs:range rdf:resource="#Activity"/>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#isExpressedThrough"/>
     </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#Activity"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is enacted by</rdfs:label>
     <rdfs:domain rdf:resource="#Practice"/>
@@ -381,6 +387,10 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasParticipant">
+    <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >testing</vs:term_status>
+    <vs:moreinfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Is this necessary?</vs:moreinfo>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -390,18 +400,16 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     <rdfs:range rdf:resource="#Entity"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isEnactmentOf">
-    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
+    <rdfs:comment xml:lang="en">Relates an activity to a practice that it is enacting, if the doings and sayings of that activity expresses components (linked understandings) belonging to that practice.</rdfs:comment>
     <rdfs:domain rdf:resource="#Activity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is enactedin</rdfs:label>
     <rdfs:range rdf:resource="#Practice"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
     <owl:inverseOf rdf:resource="#isEnactedBy"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isRelationTowards">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:comment xml:lang="en">Relates one of four social relations; causal, intentional, prefigurative and spatial, to a given entity.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Socially relates</rdfs:label>
     <rdfs:subPropertyOf>
@@ -412,32 +420,29 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     <owl:inverseOf rdf:resource="#hasRelation"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isCarrierOf">
-    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
+    <rdfs:comment xml:lang="en">Relates a human to a particular practice that he/she is carrying. A person can be said to carry a practice if one or more understandings are expresssed and/or organized through his/her doings and sayings.</rdfs:comment>
     <rdfs:range rdf:resource="#Practice"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is social relation for</rdfs:label>
     <rdfs:domain rdf:resource="#Human"/>
     <owl:inverseOf rdf:resource="#isCarriedBy"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isOrganizedBy">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#isExpressedThrough"/>
-    </rdfs:subPropertyOf>
+    <rdfs:comment xml:lang="en">Relates a practice to a type of understanding that organizes and links, the various doings and sayings that compose it.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >social relation</rdfs:label>
     <rdfs:domain rdf:resource="#Practice"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Relations among entities are social relations to the extent that they help constitute social life. They form links among particular entities, (not types or hypostatized abstractions) which cover the full range of connections among entities of arrangements, not just links that join humans directly.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#isExpressedThrough"/>
+    </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#LinkedUnderstanding"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="isOrganizerOf"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#arrangesEntities">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:comment xml:lang="en">Relates one entity to another that, together with practices, constitutes a type of arrangement in which entities occupy positions and possess meanings.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >arranges entities</rdfs:label>
     <rdfs:range rdf:resource="#Entity"/>
@@ -447,20 +452,18 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isArrangedBy">
+    <rdfs:comment xml:lang="en">Relates entities to one another in the form of an arrangement, whereby they occupy positions and possess meanings according to the type of social relation shared.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >has social relation</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
     <rdfs:range rdf:resource="#SocialRelation"/>
     <rdfs:domain rdf:resource="#Entity"/>
     <owl:inverseOf rdf:resource="#arrangesEntities"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isExpressedThrough">
-    <owl:inverseOf rdf:resource="#expressesPractice"/>
+    <rdfs:comment xml:lang="en">Relates a practice to a particular set of humans, activities and linked understandings that express it.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >composes practice</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <owl:inverseOf rdf:resource="#expressesPractice"/>
     <rdfs:domain rdf:resource="#Practice"/>
     <rdfs:range>
       <owl:Class>
@@ -473,12 +476,11 @@ The prefiguration of agency which affects choices of action is indeterminate, un
     </rdfs:range>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#isOrganizerOf">
-    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
+    <rdfs:comment xml:lang="en">Relates a type of understanding to a given practice if that understanding organizes and links, the various doings and sayings that compose the practice.</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >is organizer of</rdfs:label>
     <rdfs:domain rdf:resource="#LinkedUnderstanding"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#expressesPractice"/>
     <rdfs:range rdf:resource="#Practice"/>
     <owl:inverseOf rdf:resource="#isOrganizedBy"/>
   </owl:ObjectProperty>
