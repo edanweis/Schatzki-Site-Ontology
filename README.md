@@ -19,3 +19,6 @@ Please note, I am not the original author of the philosophical concepts and desc
 The Schatzki Site Ontology is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: [http://www.opendatacommons.org/licenses/pddl/1.0/](http://www.opendatacommons.org/licenses/pddl/1.0/).
 
 This license applies to the Schatzki Site Ontology Specification and accompanying documentation in RDF. Regarding underlying technology, Schatzki Site Ontology uses W3C's RDF technology, an open Web standard that can be freely used by anyone.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edanweis/schatzki-site-ontology/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
